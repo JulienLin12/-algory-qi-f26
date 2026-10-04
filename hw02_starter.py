@@ -15,7 +15,6 @@ def present_value(cash_flows, rate):
 
     present_value([10, 15, 20], 0.10) -> 36.51
     """
-    # TODO
     counter = 0
     result = 0
     for years in cash_flows:
@@ -34,7 +33,6 @@ def bond_price(face, coupon_rate, years, market_rate):
     The final year pays the coupon AND the face value. That is the usual bug.
     bond_price(1000, 0.04, 10, 0.04) -> exactly 1000.0
     """
-    # TODO 
     yearly_payment = coupon_rate * face
     cash_flows = []
 
@@ -50,7 +48,6 @@ print(bond_price(1000, 0.04, 10, 0.04))
 # ---------------------------------------------------------------- Q4/Q5
 def annualised_return(prices):
     """Annualised return from a price series, using 252 trading days."""
-    # TODO
     prices = pd.Series(prices, dtype=float)
     prices = prices.dropna()
 
@@ -62,7 +59,6 @@ def annualised_return(prices):
 
 def annualised_volatility(prices):
     """Annualised standard deviation of daily returns."""
-    # TODO
     prices = pd.Series(prices, dtype=float)
     daily_returns = prices.pct_change(fill_method=None).dropna()
 
@@ -76,7 +72,6 @@ def beta(stock_prices, market_prices):
     Computing this on prices instead of returns is a common and silent error.
     beta(spy, spy) -> 1.0
     """
-    # TODO
     stock_prices = pd.Series(stock_prices, dtype=float)
     market_prices = pd.Series(market_prices, dtype=float)
     stock_returns = stock_prices.pct_change(fill_method=None)
@@ -100,7 +95,7 @@ def beta(stock_prices, market_prices):
 def main():
     """Everything the assignment asks you to print goes here."""
     print("Q1  present_value([10, 15, 20], 0.10) =", present_value([10, 15, 20], 0.10))
-    # TODO: Q3 — three bond prices, then the price-vs-rate plot
+    # Q3 — three bond prices, then the price-vs-rate plot
     for rate in [0.02, 0.04, 0.0496]:
         price = bond_price(1000, 0.04, 10, rate)
         print(f"Market rate {rate:.2%}: ${price:,.2f}")
@@ -123,7 +118,7 @@ def main():
     plt.grid(True)
     plt.show()
 
-    # TODO: Q4 — download your three tickers and SPY, print trading days for each
+    # Q4 — download your three tickers and SPY, print trading days for each
     tickers = ["7974.T", "SGE.L", "AAPL", "SPY"]
 
     data = yf.download(
@@ -139,7 +134,7 @@ def main():
     for ticker in tickers:
         prices = closing_prices[ticker].dropna()
         print(f"{ticker}: {len(prices)} trading days")
-    # TODO: Q5 — the table of return, volatility and beta
+    # Q5 — the table of return, volatility and beta
     results = []
 
     for ticker in tickers:
@@ -162,7 +157,7 @@ def main():
             "Beta": "{:.2f}".format
         }
     ))
-    # TODO: Q6 — both rankings
+    # Q6 — both rankings
         # Print the three prices
     for rate in [0.02, 0.04, 0.0496]:
         price = bond_price(1000, 0.04, 10, rate)
